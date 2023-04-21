@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import ReactCounter from '../components/reactCounter/Counter';
+import SolidCounter from '../components/solidCounter/Counter';
+---
+
+<Layout title="Welcome to Signals.">
+	<main>
+		<h1>Welcome to <span class="text-gradient">Signals</span></h1>
+		<ul role="list" class="link-card-grid">
+			<Card
+				title="Counter with React"
+			>
+				<ReactCounter startWith={0} client:only="react"/>
+			</Card>
+			<Card
+				title="Counter with Solid"
+			>
+				<SolidCounter startWith={0} client:only="solid-js"/>
+			</Card>
+		</ul>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+
+	.counter-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 15px;
+	}
+
+	.counter-value {
+		background: white;
+		border-radius: 12px;
+		color: black;
+		font-weight: 400;
+		font-size: 2rem;
+		width: 120px;
+	}
+
+</style>
